@@ -1,11 +1,11 @@
-import { Heart, ChevronLeft, ChevronRight, MoreHorizontal } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Heart } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CustomJumbotron } from "@/components/custom/CustomJumbotron";
 import { HeroStats } from "@/herores/components/HeroStats";
 import { HeroGrid } from "@/herores/components/HeroGrid";
 import { useState } from "react";
 import { CustomPagination } from "@/components/custom/CustomPagination";
+import { CustomBreadCrumbs } from "@/components/custom/CustomBreadCrumbs";
 
 type active = "all" | "favorites" | "heroes" | "villains";
 
@@ -19,6 +19,8 @@ export const HomePage = () => {
           title="Universo de SuperHeroes"
           description="Descubre, explora y administra super heroes"
         />
+
+        <CustomBreadCrumbs currentPage="Super Heroes" />
         <HeroStats />
 
         {/* Tabs */}
