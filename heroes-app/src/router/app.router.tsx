@@ -4,7 +4,6 @@ import { HeroesLayout } from "@/herores/layout/HeroesLayout";
 import { HeroPage } from "@/herores/pages/hero/HeroPage";
 import { HomePage } from "@/herores/pages/home/HomePage";
 import { lazy } from "react";
-// import { SearchPage } from "@/herores/pages/search/SearchPage";
 import { createBrowserRouter } from "react-router";
 
 const SearchPage = lazy(() => import("@/herores/pages/search/SearchPage"));
