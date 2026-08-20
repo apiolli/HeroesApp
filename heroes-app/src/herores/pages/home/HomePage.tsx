@@ -3,14 +3,21 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { CustomJumbotron } from "@/components/custom/CustomJumbotron";
 import { HeroStats } from "@/herores/components/HeroStats";
 import { HeroGrid } from "@/herores/components/HeroGrid";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { CustomPagination } from "@/components/custom/CustomPagination";
 import { CustomBreadCrumbs } from "@/components/custom/CustomBreadCrumbs";
+import { getHeroesByPage } from "@/herores/actions/get-heroes-by-page.action";
 
 type active = "all" | "favorites" | "heroes" | "villains";
 
 export const HomePage = () => {
   const [activeTab, setActiveTab] = useState<active>("all");
+
+  useEffect(() => {
+    getHeroesByPage().then((heroes) => {
+      console.log({ heroes });
+    });
+  }, []);
 
   return (
     <>
