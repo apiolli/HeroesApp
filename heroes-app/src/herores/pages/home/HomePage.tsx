@@ -14,13 +14,13 @@ type active = "all" | "favorites" | "heroes" | "villains";
 export const HomePage = () => {
   const [activeTab, setActiveTab] = useState<active>("all");
 
-  const { data } = useQuery({
+  const { data: heroesResponse } = useQuery({
     queryKey: ["heroes"],
     queryFn: () => getHeroesByPage(),
     staleTime: 1000 * 60 * 5,
   });
 
-  console.log({ data });
+  console.log({ heroesResponse });
 
   return (
     <>
@@ -59,19 +59,19 @@ export const HomePage = () => {
           </TabsList>
 
           <TabsContent value="all">
-            <HeroGrid />
+            <HeroGrid heroes={heroesResponse?.heroes ?? []} />
           </TabsContent>
           <TabsContent value="favorites">
             <h1>Todos los favoritos</h1>
-            <HeroGrid />
+            <HeroGrid heroes={heroesResponse?.heroes ?? []} />
           </TabsContent>
           <TabsContent value="heroes">
             <h1>Todos los heroes</h1>
-            <HeroGrid />
+            <HeroGrid heroes={heroesResponse?.heroes ?? []} />
           </TabsContent>
           <TabsContent value="villains">
             <h1>Todos los villanos</h1>
-            <HeroGrid />
+            <HeroGrid heroes={heroesResponse?.heroes ?? []} />
           </TabsContent>
         </Tabs>
 
