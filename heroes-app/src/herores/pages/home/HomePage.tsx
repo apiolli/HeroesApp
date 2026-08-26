@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Heart } from "lucide-react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -10,12 +10,12 @@ import { CustomBreadCrumbs } from "@/components/custom/CustomBreadCrumbs";
 import { getHeroesByPage } from "@/herores/actions/get-heroes-by-page.action";
 import { useSearchParams } from "react-router";
 
-type active = "all" | "favorites" | "heroes" | "villains";
-
 export const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const activeTab = searchParams.get("tab") ?? "all";
+  const page = searchParams.get("page") ?? "1";
+  const limit = searchParams.get("limit") ?? "6";
 
   const selectedTab = useMemo(() => {
     const validTabs = ["all", "favorites", "heroes", "villains"];
@@ -23,8 +23,8 @@ export const HomePage = () => {
   }, [activeTab]);
 
   const { data: heroesResponse } = useQuery({
-    queryKey: ["heroes"],
-    queryFn: () => getHeroesByPage(),
+    queryKey: ["heroes", { page, limit }],
+    queryFn: () => getHeroesByPage(+page, +limit),
     staleTime: 1000 * 60 * 5,
   });
 
@@ -107,7 +107,7 @@ export const HomePage = () => {
           </TabsContent>
         </Tabs>
 
-        <CustomPagination totalPages={8} />
+        <CustomPagination totalPages={heroesResponse?.pages ?? 1} />
       </>
     </>
   );
