@@ -10,14 +10,7 @@ export const SearchPage = () => {
         title="Busqueda de SuperHeroes"
         description="Descubre, explora y administra super heroes"
       />
-      <CustomBreadCrumbs
-        currentPage="Buscador de heroes"
-        breadCrumbs={[
-          { label: "Home1", to: "/" },
-          { label: "Home1", to: "/" },
-          { label: "Home1", to: "/" },
-        ]}
-      />
+      <CustomBreadCrumbs currentPage="Buscador de heroes" breadCrumbs={[]} />
       <HeroStats />
       <SearchControls />
     </>

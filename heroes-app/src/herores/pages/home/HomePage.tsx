@@ -9,6 +9,7 @@ import { CustomPagination } from "@/components/custom/CustomPagination";
 import { CustomBreadCrumbs } from "@/components/custom/CustomBreadCrumbs";
 import { getHeroesByPage } from "@/herores/actions/get-heroes-by-page.action";
 import { useSearchParams } from "react-router";
+import { useSummary } from "@/herores/hooks/useSummary";
 
 export const HomePage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -27,6 +28,8 @@ export const HomePage = () => {
     queryFn: () => getHeroesByPage(+page, +limit),
     staleTime: 1000 * 60 * 5,
   });
+
+  const { data: summary } = useSummary();
 
   return (
     <>
@@ -75,7 +78,7 @@ export const HomePage = () => {
                 })
               }
             >
-              Heroes (12)
+              Heroes ({summary?.heroCount})
             </TabsTrigger>
             <TabsTrigger
               value="villains"
@@ -86,7 +89,7 @@ export const HomePage = () => {
                 })
               }
             >
-              Villains (2)
+              Villains ({summary?.villainCount})
             </TabsTrigger>
           </TabsList>
 
