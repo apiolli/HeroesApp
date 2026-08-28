@@ -18,7 +18,7 @@ export const HeroGridCard = ({ hero }: Props) => {
   };
 
   return (
-    <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-linear-to-br from-white to-gray-50">
+    <Card className="group overflow-hidden hover:shadow-xl transition-all duration-300 hover:-translate-y-1 bg-linear-to-br from-white to-gray-50 cursor-pointer">
       <div className="relative h-64">
         <img
           src={hero.image}
