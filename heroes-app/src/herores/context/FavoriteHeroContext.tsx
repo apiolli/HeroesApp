@@ -17,8 +17,8 @@ interface FavoriteHeroContext {
 export const FavoriteHeroContext = createContext({} as FavoriteHeroContext);
 
 const getFavoritesFromLocalStorage = (): Hero[] => {
-  const favorite = localStorage.getItem("favorite");
-  return favorite ? JSON.parse("favorite") : [];
+  const favorites = localStorage.getItem("favorites");
+  return favorites ? JSON.parse(favorites) : [];
 };
 
 export const FavoriteHeroProvider = ({ children }: PropsWithChildren) => {
